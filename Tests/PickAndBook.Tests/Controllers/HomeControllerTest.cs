@@ -1,13 +1,13 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PickAndBook.Controllers;
+using NUnit.Framework;
 
 namespace PickAndBook.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
@@ -20,7 +20,7 @@ namespace PickAndBook.Tests.Controllers
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void About()
         {
             // Arrange
@@ -33,7 +33,7 @@ namespace PickAndBook.Tests.Controllers
             Assert.AreEqual("Your application description page.", result.ViewBag.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void Contact()
         {
             // Arrange
@@ -44,13 +44,6 @@ namespace PickAndBook.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Test()
-        {
-            // Arrange & Act & Assert
-            Assert.IsTrue(true);
         }
     }
 }

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Linq;
+using PickAndBook.Data.Contracts;
+using PickAndBook.Data.Models;
+
+namespace PickAndBook.Data.Repositories.Contracts
+{
+    public interface ICompanyRepository : IRepository<Company>
+    {
+        IQueryable<Company> GetCompaniesByCategoryId(Guid? categoryId);
+
+        IQueryable<Company> GetCompaniesByNameOrDescription(string searchText);
+
+        IQueryable<Company> GetCompaniesByCategoryIdNameOrDescription(Guid? categoryId, string searchText);
+
+        Company GetCompanyByUserId(string userId);
+    }
+}

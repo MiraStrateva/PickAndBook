@@ -240,3 +240,10 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/PickAndBook/Images/error.png
+/PickAndBook/Images
+/PickAndBook/500.html
+/PickAndBook/404.html
+/PickAndBook/403.html
+/PickAndBook/400.html
+/PickAndBook/Error.css
