@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace PickAndBook.Data.Repositories
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class CategoryRepository : EFRepository<Category>, ICategoryRepository
     {
         public CategoryRepository(IPickAndBookDbContext context)
             : base(context)

@@ -73,5 +73,13 @@ namespace BookingSystem.Data
         {
             base.Dispose(disposing);
         }
+
+        public void RefreshAll()
+        {
+            foreach (var entity in this.ChangeTracker.Entries())
+            {
+                entity.Reload();
+            }
+        }
     }
 }

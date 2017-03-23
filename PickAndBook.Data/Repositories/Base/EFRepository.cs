@@ -15,10 +15,10 @@ using PickAndBook.Data.Contracts;
 
 namespace PickAndBook.Data.Repositories.Base
 {
-    public class GenericRepository<T> : IRepository<T>
+    public class EFRepository<T> : IEFRepository<T>
         where T : class
     {
-        public GenericRepository(IPickAndBookDbContext context)
+        public EFRepository(IPickAndBookDbContext context)
         {
             if (context == null)
             {
@@ -35,6 +35,7 @@ namespace PickAndBook.Data.Repositories.Base
 
         public virtual IQueryable<T> All()
         {
+            this.Context.RefreshAll();
             return this.DbSet.AsQueryable();
         }
 

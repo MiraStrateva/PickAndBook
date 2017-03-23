@@ -70,21 +70,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IOrderable.cs" />
-    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Contracts\IEFRepository.cs" />
     <Compile Include="DataConstants.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
-    <Compile Include="IPickAndBookData.cs" />
     <Compile Include="IPickAndBookDbContext.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\DefaultMigrationConfiguration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Workingtime.cs" />
-    <Compile Include="PickAndBookData.cs" />
     <Compile Include="PickAndBookDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Base\GenericRepository.cs" />
+    <Compile Include="Repositories\Base\EFRepository.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
@@ -92,7 +90,9 @@
     <Compile Include="Repositories\Contracts\ICategoryRepository.cs" />
     <Compile Include="Repositories\Contracts\ICompanyRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

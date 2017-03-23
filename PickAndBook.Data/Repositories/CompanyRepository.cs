@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PickAndBook.Data.Repositories
 {
-    public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
+    public class CompanyRepository : EFRepository<Company>, ICompanyRepository
     {
         public CompanyRepository(IPickAndBookDbContext context)
             : base(context)

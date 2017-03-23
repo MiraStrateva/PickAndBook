@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace PickAndBook.Data.Repositories
 {
-    public class BookingRepository : GenericRepository<Booking>, IBookingRepository
+    public class BookingRepository : EFRepository<Booking>, IBookingRepository
     {
         public BookingRepository(IPickAndBookDbContext context)
             : base(context)

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace PickAndBook.Data.Contracts
 {
-    public interface IRepository<T>
+    public interface IEFRepository<T>
             where T : class
     {
         IQueryable<T> All();

@@ -5,7 +5,7 @@ using PickAndBook.Data.Models;
 
 namespace PickAndBook.Data.Repositories.Contracts
 {
-    public interface ICompanyRepository : IRepository<Company>
+    public interface ICompanyRepository : IEFRepository<Company>
     {
         IQueryable<Company> GetCompaniesByCategoryId(Guid? categoryId);
 

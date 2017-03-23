@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PickAndBook.Data.Repositories.Contracts
 {
-    public interface IBookingRepository : IRepository<Booking>
+    public interface IBookingRepository : IEFRepository<Booking>
     {
         IQueryable<Booking> GetBookingByUserId(string userId);
 

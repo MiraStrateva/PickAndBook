@@ -21,6 +21,8 @@ namespace PickAndBook.Data
 
         void ClearDatabase();
 
+        void RefreshAll();
+
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity)
             where TEntity : class;
 

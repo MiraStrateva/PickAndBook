@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PickAndBook.Data.Repositories.Contracts
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IEFRepository<Category>
     {
         IQueryable<Category> GetAllCategoriesWithIncludedCompanies();
 
