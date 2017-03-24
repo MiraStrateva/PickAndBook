@@ -1,4 +1,4 @@
-﻿using BookingSystem.Data;
+﻿using PickAndBook.Data;
 using PickAndBook.Data.Migrations;
 using System.Configuration;
 using System.Data.Entity;
@@ -48,7 +48,7 @@ namespace PickAndBook
                         {
                             while (reader.Read())
                             {
-                                categories.AppendLine(string.Format("{0};{1};{2};{3};{4}", reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4)));
+                                categories.AppendLine(string.Format("{0};{1};{2};{3};{4}", reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.IsDBNull(3)==true?"null":reader.GetString(3), reader.GetInt32(4)));
                             }
                             return categories.ToString();
                         }

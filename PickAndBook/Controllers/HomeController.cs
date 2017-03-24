@@ -1,17 +1,8 @@
-﻿using BookingSystem.Data;
-using Bytes2you.Validation;
-using PickAndBook.Data;
-using PickAndBook.Data.Contracts;
-using PickAndBook.Data.Models;
-using PickAndBook.Data.Repositories;
+﻿using Bytes2you.Validation;
 using PickAndBook.Data.Repositories.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 
@@ -40,6 +31,7 @@ namespace PickAndBook.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -47,6 +39,7 @@ namespace PickAndBook.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [OutputCache(Duration = 3600, VaryByParam = "none", VaryByCustom = "CustomSqlDependency")]
         public ActionResult HomeCategories()
         {

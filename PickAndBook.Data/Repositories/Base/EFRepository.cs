@@ -12,6 +12,7 @@ using EntityFramework.Extensions;
 
 using PickAndBook.Data.Extensions;
 using PickAndBook.Data.Contracts;
+using System.Data.Entity.Migrations;
 
 namespace PickAndBook.Data.Repositories.Base
 {
@@ -64,13 +65,14 @@ namespace PickAndBook.Data.Repositories.Base
 
         public virtual void Update(T entity)
         {
-            DbEntityEntry entry = this.Context.Entry(entity);
-            if (entry.State == EntityState.Detached)
-            {
-                this.DbSet.Attach(entity);
-            }
+            this.DbSet.AddOrUpdate(entity);
+            //DbEntityEntry entry = this.Context.Entry(entity);
+            //if (entry.State == EntityState.Detached)
+            //{
+            //    this.DbSet.Attach(entity);
+            //}
 
-            entry.State = EntityState.Modified;
+            //entry.State = EntityState.Modified;
         }
 
         public virtual int Update(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T>> updateExpression)

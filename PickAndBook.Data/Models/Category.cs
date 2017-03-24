@@ -25,7 +25,6 @@ namespace PickAndBook.Data.Models
         [Required]
         public string CategoryDescription { get; set; }
 
-        [Required]
         public string CategoryImage { get; set; }
 
         public virtual ICollection<Company> Companies { get; set; }

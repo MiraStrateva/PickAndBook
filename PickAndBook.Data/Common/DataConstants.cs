@@ -1,4 +1,4 @@
-﻿namespace PickAndBook.Data
+﻿namespace PickAndBook.Data.Common
 {
     public static class DataConstants
     {

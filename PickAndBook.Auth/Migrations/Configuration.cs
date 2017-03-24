@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using PickAndBook.Data;
+using PickAndBook.Data.Common;
 using System.Data.Entity.Migrations;
 
 namespace PickAndBook.Auth.Migrations

@@ -1,0 +1,67 @@
+﻿@model PickAndBook.Data.Models.Category
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+<div class="jumbotron admin">
+    @using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h3>Category @Model.CategoryName </h3>
+            <hr />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CategoryId)
+            <div class="form-group">
+                @if (Model.CategoryImage != "")
+                {
+                    <div class="form-group">
+                        <span class="control-label col-md-3"><strong>Current Image</strong></span>
+                        <div class="col-md-6">
+                            <img class="img-thumbnail" src=@Model.CategoryImage alt="" />
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.Label("New Image", new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBox("upload", "", new { type = "file", id = "CategoryImage" }) <br />
+                        @ViewBag.Message
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.Label("Name", new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CategoryName)
+                    @Html.ValidationMessageFor(model => model.CategoryName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Description", new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CategoryDescription)
+                    @Html.ValidationMessageFor(model => model.CategoryDescription)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+@section footer {
+    <p>Edit Category @Model.CategoryName</p>
+}

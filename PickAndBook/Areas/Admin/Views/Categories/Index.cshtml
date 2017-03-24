@@ -1,0 +1,17 @@
+﻿@using PickAndBook.Models.Shared
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+@model PageableViewModel<PickAndBook.Data.Models.Category>
+
+<div class="jumbotron admin">
+    <p>
+        @Html.ActionLink("Add new category", "Add")
+    </p>    
+    @Html.Partial("_CategoryList", Model)
+</div>
+@section footer {
+    <p>List of Categories ordered by Name.</p>
+}

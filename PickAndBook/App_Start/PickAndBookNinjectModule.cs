@@ -1,5 +1,4 @@
-﻿using BookingSystem.Data;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using PickAndBook.Data;
 using PickAndBook.Data.Contracts;
 using PickAndBook.Data.Repositories;
@@ -13,6 +12,7 @@ namespace PickAndBook.App_Start
         public override void Load()
         {
             this.Bind<IPickAndBookDbContext>().To<PickAndBookDbContext>().InSingletonScope();
+            this.Bind<IPickAndBookData>().To<PickAndBookData>().InSingletonScope();
 
             // Repositories
             this.Bind(typeof(IEFRepository<>)).To(typeof(EFRepository<>));

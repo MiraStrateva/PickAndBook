@@ -1,0 +1,37 @@
+﻿@using PickAndBook.Models.Shared
+@model PageableViewModel<PickAndBook.Data.Models.Category>
+
+<table class="table">
+    <colgroup>
+        <col width="30%" />
+        <col width="20%" />
+        <col width="30%" />
+        <col width="20%" />
+    </colgroup>
+    <tr>
+        <th>Image file name</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>
+                <img src=@item.CategoryImage alt=@item.CategoryName class="img-thumbnail"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { categoryId = item.CategoryId }) |
+                @Html.ActionLink("Details", "Details", new { categoryId = item.CategoryId }) |
+                @Html.ActionLink("Delete", "Delete", new { categoryId = item.CategoryId })
+            </td>
+        </tr>
+    }
+</table>
+@Html.Partial("_PageablePartial", Model)

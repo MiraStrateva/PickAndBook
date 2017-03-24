@@ -1,5 +1,5 @@
-﻿using BookingSystem.Data;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using PickAndBook.Data.Common;
 using PickAndBook.Data.Models;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;

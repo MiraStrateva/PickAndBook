@@ -1,0 +1,17 @@
+﻿@model PickAndBook.Data.Models.Category
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+<div class="jumbotron admin">
+    <h3>Category @Model.CategoryName </h3>
+    <hr />
+    @Html.Partial("_CategoryDetail", Model)
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { categoryId = Model.CategoryId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+@section footer {
+    <p>Show details for Category @Model.CategoryName</p>
+}

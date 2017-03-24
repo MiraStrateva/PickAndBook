@@ -1,0 +1,18 @@
+﻿@model PickAndBook.Data.Models.Category 
+
+<dl class="dl-horizontal">
+    <dt>Image</dt>
+    <dd>
+        <div class="col-md-6">
+            <img class="img-thumbnail" src=@Model.CategoryImage alt="" />
+        </div>
+    </dd>
+    <dt>Name</dt>
+    <dd>
+        @Html.DisplayFor(model => model.CategoryName)
+    </dd>
+    <dt>Desrtiption</dt>
+    <dd>
+        @Html.DisplayFor(model => model.CategoryDescription)
+    </dd>
+</dl>

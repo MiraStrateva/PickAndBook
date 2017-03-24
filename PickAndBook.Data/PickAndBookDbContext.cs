@@ -1,10 +1,9 @@
 ﻿using System.Data.Entity;
 using PickAndBook.Data.Models;
-using PickAndBook.Data;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BookingSystem.Data
+namespace PickAndBook.Data
 {
     public class PickAndBookDbContext : IdentityDbContext, IPickAndBookDbContext
     {
