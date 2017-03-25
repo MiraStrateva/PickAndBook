@@ -28,7 +28,5 @@ namespace PickAndBook.Data.Contracts
         int Delete(Expression<Func<T, bool>> filterExpression);
 
         void Detach(T entity);
-
-        void UpdateValues(Expression<Func<T, object>> entity);
     }
 }

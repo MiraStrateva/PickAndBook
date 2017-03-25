@@ -67,9 +67,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BookingRepositoryTests\GetBookingByCompanyId_Should.cs" />
+    <Compile Include="BookingRepositoryTests\GetBookingByUserId_Should.cs" />
+    <Compile Include="CategoryRepositoryTests\GetAll_Should.cs" />
     <Compile Include="CategoryRepositoryTests\GetCategoryNameById_Should.cs" />
     <Compile Include="CompanyRepositoryTests\GetCompaniesByCategoryIdNameOrDescription_Should.cs" />
     <Compile Include="CompanyRepositoryTests\GetCompaniesByCategoryId_Should.cs" />
+    <Compile Include="EFRepositoryTests\All_Should.cs" />
+    <Compile Include="EFRepositoryTests\GetById_Should.cs" />
     <Compile Include="Mocks\QueryableDbSetMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +88,7 @@
       <Name>PickAndBook.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

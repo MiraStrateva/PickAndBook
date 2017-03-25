@@ -14,6 +14,15 @@ namespace PickAndBook.Data.Repositories
         {
         }
 
+        public IQueryable<Category> GetAll(int page = 0, int pageSize = 0)
+        {
+            int toSkip = page * pageSize;
+            return this.All()
+                       .OrderBy(c => c.CategoryName)
+                       .Skip(toSkip)
+                       .Take(pageSize);
+        }
+
         public IQueryable<Category> GetAllCategoriesWithIncludedCompanies()
         {
             return this.Context.Categories.Include(c => c.Companies);

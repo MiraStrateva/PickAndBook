@@ -3,11 +3,7 @@ using NUnit.Framework;
 using PickAndBook.Data.Models;
 using PickAndBook.Data.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickAndBook.Data.Tests.CategoryRepositoryTests
 {

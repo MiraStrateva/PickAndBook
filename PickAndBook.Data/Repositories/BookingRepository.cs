@@ -13,10 +13,11 @@ namespace PickAndBook.Data.Repositories
         {
         }
 
-        public IQueryable<Booking> GetBookingByCompanyId(Guid companyId)
+        public IQueryable<Booking> GetBookingByCompanyId(Guid? companyId)
         {
-            return this.All()
-                .Where(b => b.CompanyId == companyId);
+            return companyId.HasValue ? 
+                this.All().Where(b => b.CompanyId == companyId) :
+                null;
         }
 
         public IQueryable<Booking> GetBookingByUserId(string userId)

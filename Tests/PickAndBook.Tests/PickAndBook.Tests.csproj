@@ -39,6 +39,14 @@
       <HintPath>..\..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -53,6 +61,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +88,10 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -86,12 +101,30 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Add_Get_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Add_Post_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\DeleteCategory_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Delete_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Details_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Edit_Get_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Edit_Post_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\CategoriesControllerTests\UploadFile_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\About_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Error_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\HomeCategories_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\Contact_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\TestFitureAttribute.cs" />
+    <Compile Include="Helpers\AttributeTester.cs" />
+    <Compile Include="Helpers\TestPathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +132,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\PickAndBook.Data\PickAndBook.Data.csproj">
+      <Project>{CED48FB5-0A44-4BE3-BDD6-C55153589C5F}</Project>
+      <Name>PickAndBook.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\PickAndBook\PickAndBook.csproj">
       <Project>{9174fe97-04ad-4c25-ba1c-75df87363371}</Project>
       <Name>PickAndBook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PickAndBook.Data.Tests\PickAndBook.Data.Tests.csproj">
+      <Project>{5C616AD7-B524-4A7F-A79B-ADCB09761B57}</Project>
+      <Name>PickAndBook.Data.Tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

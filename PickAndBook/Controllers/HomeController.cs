@@ -19,11 +19,13 @@ namespace PickAndBook.Controllers
             this.categoryRepository = categoryRepository;
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -48,11 +50,7 @@ namespace PickAndBook.Controllers
             return PartialView("_HomeCategories", categories);
         }
 
-        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
+        [AllowAnonymous]
         public ViewResult Error()
         {
             return this.View("Error");

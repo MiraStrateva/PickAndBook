@@ -9,6 +9,6 @@ namespace PickAndBook.Data.Repositories.Contracts
     {
         IQueryable<Booking> GetBookingByUserId(string userId);
 
-        IQueryable<Booking> GetBookingByCompanyId(Guid companyId);
+        IQueryable<Booking> GetBookingByCompanyId(Guid? companyId);
     }
 }

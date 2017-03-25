@@ -2,11 +2,11 @@
 using PickAndBook.Common;
 using PickAndBook.Data;
 using PickAndBook.Data.Models;
+using PickAndBook.Helpers.Contracts;
 using PickAndBook.Models.Shared;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,19 +14,22 @@ namespace PickAndBook.Areas.Admin.Controllers
 {
     public class CategoriesController : AdminController
     {
+        private IPathProvider pathProvider;
         public CategoriesController(IPickAndBookData data)
             : base(data)
         {
         }
 
+        public CategoriesController(IPickAndBookData data, IPathProvider pathProvider)
+            : base(data)
+        {
+            this.pathProvider = pathProvider;
+        }
+
         [HttpGet]
         public ActionResult Index(int page = 0, int pageSize = Constants.DefaultPageSize)
         {
-            int toSkip = page * pageSize;
-            var categories = this.Data.Categories.All()
-                       .OrderBy(c => c.CategoryName)
-                       .Skip(toSkip)
-                       .Take(pageSize)
+            var categories = this.Data.Categories.GetAll(page, pageSize)
                        .ToList();
             var viewModel = new PageableViewModel<Category>()
             {
@@ -36,7 +39,7 @@ namespace PickAndBook.Areas.Admin.Controllers
                 TotalCount = this.Data.Categories.All().Count()
             };
 
-            if (this.Request.IsAjaxRequest())
+            if (this.Request != null && this.Request.IsAjaxRequest())
             {
                 return this.PartialView("_CategoryList", viewModel);
             }
@@ -47,30 +50,14 @@ namespace PickAndBook.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Details(Guid? categoryId)
         {
-            if (categoryId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Category category = this.Data.Categories.GetById(categoryId);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
             return this.View(category);
         }
 
         [HttpGet]
         public ActionResult Edit(Guid? categoryId)
         {
-            if (categoryId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Category category = this.Data.Categories.GetById(categoryId);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
             return View(category);
         }
 
@@ -82,21 +69,15 @@ namespace PickAndBook.Areas.Admin.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    try
+                    string uploadedImage = UploadFile(upload, Constants.CategoriesImageFolder);
+                    if (uploadedImage == "")
                     {
-                        string fileName = Path.GetFileName(upload.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Images/Categories"), fileName);
-                        upload.SaveAs(path);
-
-                        category.CategoryImage = Path.Combine("/Images/Categories/", fileName);
-                    }
-                    catch
-                    {
-                        ViewBag.Message = "File upload failed!!";
+                        ModelState.AddModelError(Constants.FileCannotBeUploadedKey, Constants.FileCannotBeUploaded);
                         return View(category);
                     }
-                }
 
+                    category.CategoryImage = uploadedImage;
+                }
                 this.Data.Categories.Update(category);
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");
@@ -113,7 +94,7 @@ namespace PickAndBook.Areas.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid? categoryId)
+        public ActionResult DeleteCategory(Guid? categoryId)
         {
             Category category = this.Data.Categories.GetById(categoryId);
             this.Data.Categories.Delete(category);
@@ -128,7 +109,6 @@ namespace PickAndBook.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Category category, HttpPostedFileBase upload)
         {
@@ -136,18 +116,13 @@ namespace PickAndBook.Areas.Admin.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    try
+                    string uploadedImage = UploadFile(upload, Constants.CategoriesImageFolder);
+                    if (uploadedImage == "")
                     {
-                        string fileName = Path.GetFileName(upload.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Images/Categories"), fileName);
-                        upload.SaveAs(path);
-                        category.CategoryImage = Path.Combine("/Images/Categories/", fileName);
+                        ModelState.AddModelError(Constants.FileCannotBeUploadedKey, Constants.FileCannotBeUploaded);
+                        return View(category);
                     }
-                    catch
-                    {
-                        ViewBag.Message = "File upload failed!!";
-                        return View();
-                    }
+                    category.CategoryImage = uploadedImage;
                 }
 
                 this.Data.Categories.Add(category);
@@ -155,8 +130,25 @@ namespace PickAndBook.Areas.Admin.Controllers
                 return this.RedirectToAction("Details", new { categoryId = category.CategoryId });
             }
 
-            // If we got this far, something failed, redisplay form
             return View(category);
+        }
+
+        public string UploadFile(HttpPostedFileBase upload, string pathToUpload)
+        {
+            string uploadedImage;
+            try
+            {
+                string fileName = Path.GetFileName(upload.FileName);
+                string path = Path.Combine(this.pathProvider.MapPath("~" + pathToUpload), fileName);
+                upload.SaveAs(path);
+
+                uploadedImage = Path.Combine(pathToUpload, fileName);
+            }
+            catch
+            {
+                uploadedImage = "";
+            }
+            return uploadedImage;
         }
     }
 }
