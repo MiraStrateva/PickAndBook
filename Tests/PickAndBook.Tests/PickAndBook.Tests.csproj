@@ -108,6 +108,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\AdminControllerTests\AdminController_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Add_Get_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Add_Post_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\DeleteCategory_Should.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="Controllers\HomeControllerTests\HomeCategories_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\Contact_Should.cs" />
-    <Compile Include="Controllers\HomeControllerTests\TestFitureAttribute.cs" />
     <Compile Include="Helpers\AttributeTester.cs" />
     <Compile Include="Helpers\TestPathProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +145,7 @@
       <Name>PickAndBook.Data.Tests</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

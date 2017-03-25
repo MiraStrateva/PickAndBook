@@ -51,7 +51,19 @@ namespace PickAndBook.Controllers
             {
                 var controllerName = this.ControllerContext.RouteData.Values["Controller"].ToString();
                 var actionName = this.ControllerContext.RouteData.Values["Action"].ToString();
-                this.View("Error", new HandleErrorInfo(filterContext.Exception, controllerName, actionName)).ExecuteResult(this.ControllerContext);
+                // this.View("Error", new HandleErrorInfo(filterContext.Exception, controllerName, actionName))
+                //    .ExecuteResult(this.ControllerContext);
+
+                Exception ex = filterContext.Exception;
+                // filterContext.ExceptionHandled = true;
+
+                var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
+
+                filterContext.Result = new ViewResult()
+                {
+                    ViewName = "Error",
+                    ViewData = new ViewDataDictionary(model)
+                };
             }
 
             filterContext.ExceptionHandled = true;

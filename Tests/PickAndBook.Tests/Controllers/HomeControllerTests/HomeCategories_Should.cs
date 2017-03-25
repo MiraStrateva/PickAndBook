@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using PickAndBook.Controllers;
+using PickAndBook.Data;
 using PickAndBook.Data.Models;
 using PickAndBook.Data.Repositories.Contracts;
 using System;
@@ -11,20 +12,22 @@ using TestStack.FluentMVCTesting;
 
 namespace PickAndBook.Tests.Controllers.HomeControllerTests
 {
-    [TestFiture]
+    [TestFixture]
     public class HomeCategories_Should
     {
         [Test]
         public void ReturnHomeCategoriesPartialView_WhenGetToHomeCategories()
         {
             // Arrange
+            var dataMock = new Mock<IPickAndBookData>();
             var categoryRepositoryMock = new Mock<ICategoryRepository>();
             IEnumerable<Category> categories = GetCategories();
             var expectedCategoryResultSet = categories.AsQueryable();
 
             categoryRepositoryMock.Setup(m => m.All()).Returns(expectedCategoryResultSet);
+            dataMock.Setup(c => c.Categories).Returns(categoryRepositoryMock.Object);
 
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            HomeController controller = new HomeController(dataMock.Object);
 
             // Act & Assert
             controller.WithCallTo(c => c.HomeCategories())
@@ -35,13 +38,15 @@ namespace PickAndBook.Tests.Controllers.HomeControllerTests
         public void ReturnHomeCategoriesPartialViewWithExpectedModelType_WhenGetToHomeCategories()
         {
             // Arrange
+            var dataMock = new Mock<IPickAndBookData>();
             var categoryRepositoryMock = new Mock<ICategoryRepository>();
             IEnumerable<Category> categories = GetCategories();
             var expectedCategoryResultSet = categories.AsQueryable();
 
             categoryRepositoryMock.Setup(m => m.All()).Returns(expectedCategoryResultSet);
+            dataMock.Setup(c => c.Categories).Returns(categoryRepositoryMock.Object);
 
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            HomeController controller = new HomeController(dataMock.Object);
 
             // Act & Assert
             controller.WithCallTo(c => c.HomeCategories())
@@ -53,14 +58,16 @@ namespace PickAndBook.Tests.Controllers.HomeControllerTests
         public void ReturnHomeCategoriesPartialViewWithExpectedModel_WhenGetToHomeCategories()
         {
             // Arrange
+            var dataMock = new Mock<IPickAndBookData>();
             var categoryRepositoryMock = new Mock<ICategoryRepository>();
             IEnumerable<Category> categories = GetCategories();
             var expectedCategoryResultSet = categories.AsQueryable();
             var expectedModel = expectedCategoryResultSet.ToList();
 
             categoryRepositoryMock.Setup(m => m.All()).Returns(expectedCategoryResultSet);
+            dataMock.Setup(c => c.Categories).Returns(categoryRepositoryMock.Object);
 
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            HomeController controller = new HomeController(dataMock.Object);
 
             // Act 
             var result = controller.HomeCategories() as PartialViewResult;

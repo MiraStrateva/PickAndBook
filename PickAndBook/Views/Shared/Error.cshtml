@@ -3,7 +3,12 @@
 @{
     ViewBag.Title = "Error";
 }
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
-
+<div class="error-page">
+    <div class="row">
+        <div class="col-md-4">
+            <h1 class="error-number">Error.</h1>
+            <h2 class="error-text">@Model.Exception.Message</h2>
+        </div>
+    </div>
+    <a class="btn btn-primary btn-lg error-a" href="/">Go home</a>
+</div>

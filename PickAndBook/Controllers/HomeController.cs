@@ -1,27 +1,26 @@
-﻿using Bytes2you.Validation;
+﻿using PickAndBook.Data;
 using PickAndBook.Data.Repositories.Contracts;
-using System;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 
 namespace PickAndBook.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ICategoryRepository categoryRepository;
 
-        public HomeController(ICategoryRepository categoryRepository)
+        public HomeController(IPickAndBookData data)
+            :base(data)
         {
-            Guard.WhenArgument(categoryRepository, nameof(categoryRepository)).IsNull().Throw();
-
-            this.categoryRepository = categoryRepository;
+            this.categoryRepository = data.Categories;
         }
 
         [AllowAnonymous]
         public ActionResult Index()
         {
+            // throw new HttpException(404, "Test error behavior");
             return View();
         }
 

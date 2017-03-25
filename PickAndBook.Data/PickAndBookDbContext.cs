@@ -32,36 +32,6 @@ namespace PickAndBook.Data
             return base.SaveChanges();
         }
 
-        public void ClearDatabase()
-        {
-            /*
-            // Possible solution to foreign key deletes: http://www.ridgway.co.za/articles/174.aspx
-            // The above solution does not work with cyclic relations.
-            */
-
-            this.SaveChanges();
-            var tableNames =
-                new List<string>
-                    {
-                        "AspNetUserRoles",
-                        "AspNetRoles",
-                        "AspNetUserLogins",
-                        "AspNetUserClaims",
-                        "Bookings",
-                        "Workingtimes",
-                        "Companies",
-                        "Categories",
-                        "AspNetUsers",
-                    };
-
-            foreach (var tableName in tableNames)
-            {
-                this.Database.ExecuteSqlCommand(string.Format("DELETE FROM {0}", tableName));
-            }
-
-            this.SaveChanges();
-        }
-
         public new IDbSet<T> Set<T>()
             where T : class
         {

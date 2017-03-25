@@ -2,7 +2,7 @@
 using Moq;
 using PickAndBook.Controllers;
 using TestStack.FluentMVCTesting;
-using PickAndBook.Data.Repositories.Contracts;
+using PickAndBook.Data;
 
 namespace PickAndBook.Tests.Controllers.HomeControllerTests
 {
@@ -13,8 +13,8 @@ namespace PickAndBook.Tests.Controllers.HomeControllerTests
         public void ReturnDefaultView_WhenGetToContact()
         {
             // Arrange
-            var categoryRepositoryMock = new Mock<ICategoryRepository>();
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            var pickAndBookDataMock = new Mock<IPickAndBookData>();
+            HomeController controller = new HomeController(pickAndBookDataMock.Object);
 
             // Act && Assert
             controller.WithCallTo(c => c.Contact()).ShouldRenderDefaultView();
@@ -24,8 +24,8 @@ namespace PickAndBook.Tests.Controllers.HomeControllerTests
         public void ReturnContactView_WhenGetToContact()
         {
             // Arrange
-            var categoryRepositoryMock = new Mock<ICategoryRepository>();
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            var pickAndBookDataMock = new Mock<IPickAndBookData>();
+            HomeController controller = new HomeController(pickAndBookDataMock.Object);
 
             // Act && Assert
             controller.WithCallTo(c => c.Contact()).ShouldRenderView("Contact");

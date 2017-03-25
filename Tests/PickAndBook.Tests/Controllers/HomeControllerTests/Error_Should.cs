@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using PickAndBook.Controllers;
-using PickAndBook.Data.Repositories.Contracts;
+using PickAndBook.Data;
 using TestStack.FluentMVCTesting;
 
 namespace PickAndBook.Tests.Controllers.HomeControllerTests
@@ -13,8 +13,8 @@ namespace PickAndBook.Tests.Controllers.HomeControllerTests
         public void ReturnErrorView_WhenGetToError()
         {
             // Arrange
-            var categoryRepositoryMock = new Mock<ICategoryRepository>();
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            var pickAndBookDataMock = new Mock<IPickAndBookData>();
+            HomeController controller = new HomeController(pickAndBookDataMock.Object);
 
             // Act && Assert
             controller.WithCallTo(c => c.Error()).ShouldRenderView("Error");

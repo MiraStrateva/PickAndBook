@@ -1,8 +1,8 @@
 ﻿using PickAndBook.Controllers;
 using NUnit.Framework;
-using PickAndBook.Data.Repositories.Contracts;
 using Moq;
 using TestStack.FluentMVCTesting;
+using PickAndBook.Data;
 
 namespace PickAndBook.Tests.Controllers
 {
@@ -13,8 +13,8 @@ namespace PickAndBook.Tests.Controllers
         public void ReturnDefaultView_WhenGetToIndex()
         {
             // Arrange
-            var categoryRepositoryMock = new Mock<ICategoryRepository>();
-            HomeController controller = new HomeController(categoryRepositoryMock.Object);
+            var pickAndBookDataMock = new Mock<IPickAndBookData>();
+            HomeController controller = new HomeController(pickAndBookDataMock.Object);
 
             // Act && Assert
             controller.WithCallTo(c => c.Index()).ShouldRenderDefaultView();

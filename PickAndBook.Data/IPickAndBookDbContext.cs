@@ -19,8 +19,6 @@ namespace PickAndBook.Data
 
         int SaveChanges();
 
-        void ClearDatabase();
-
         void RefreshAll();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity)
