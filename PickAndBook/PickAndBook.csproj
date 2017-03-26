@@ -264,6 +264,7 @@
     <Compile Include="Models\Shared\Contracts\IPageable.cs" />
     <Compile Include="Models\Shared\PageableViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="400.html" />
@@ -367,6 +368,8 @@
     <Content Include="Views\RegisterCompany\Index.cshtml" />
     <Content Include="Views\RegisterCompany\CompanyDetails.cshtml" />
     <Content Include="Views\Shared\_CompanyDetail.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

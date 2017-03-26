@@ -15,6 +15,8 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Security.Principal;
+using System.Security.Claims;
 
 namespace PickAndBook.Tests.Controllers.RegisterCompanyControllerTests
 {
@@ -75,8 +77,20 @@ namespace PickAndBook.Tests.Controllers.RegisterCompanyControllerTests
             var companyRepositoryMock = new Mock<ICompanyRepository>();
             dataMock.Setup(c => c.Companies).Returns(companyRepositoryMock.Object);
 
-            RegisterCompanyController controller = new RegisterCompanyController(dataMock.Object, new FileUploader(new TestPathProvider()), 
-                new TestUserRoleManagerTrue());
+            string userId = Guid.NewGuid().ToString();
+            var identity = new GenericIdentity(userId, "");
+            var nameIdentifierClaim = new Claim(ClaimTypes.NameIdentifier, userId);
+            identity.AddClaim(nameIdentifierClaim);
+            var userMock = new Mock<IPrincipal>();
+            userMock.Setup(x => x.Identity).Returns(identity);
+            var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.Setup(cc => cc.HttpContext.User).Returns(userMock.Object);
+
+            RegisterCompanyController controller = new RegisterCompanyController(dataMock.Object, new FileUploader(new TestPathProvider()),
+                new TestUserRoleManagerTrue())
+            {
+                ControllerContext = controllerContextMock.Object
+            };
 
             Company company = new Company()
             {
@@ -109,8 +123,20 @@ namespace PickAndBook.Tests.Controllers.RegisterCompanyControllerTests
             categoryRepositoryMock.Setup(c => c.All()).Returns(categoriesAll.AsQueryable());
             dataMock.Setup(c => c.Categories).Returns(categoryRepositoryMock.Object);
 
+            string userId = Guid.NewGuid().ToString();
+            var identity = new GenericIdentity(userId, "");
+            var nameIdentifierClaim = new Claim(ClaimTypes.NameIdentifier, userId);
+            identity.AddClaim(nameIdentifierClaim);
+            var userMock = new Mock<IPrincipal>();
+            userMock.Setup(x => x.Identity).Returns(identity);
+            var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.Setup(cc => cc.HttpContext.User).Returns(userMock.Object);
+
             RegisterCompanyController controller = new RegisterCompanyController(dataMock.Object, new FileUploader(new TestPathProvider()),
-                new TestUserRoleManagerFalse());
+                new TestUserRoleManagerFalse())
+            {
+                ControllerContext = controllerContextMock.Object
+            };
 
             Company company = new Company()
             {
@@ -152,8 +178,20 @@ namespace PickAndBook.Tests.Controllers.RegisterCompanyControllerTests
                 postedFileMock.Setup(pf => pf.FileName).Returns("TestImage");
             }
 
+            string userId = Guid.NewGuid().ToString();
+            var identity = new GenericIdentity(userId, "");
+            var nameIdentifierClaim = new Claim(ClaimTypes.NameIdentifier, userId);
+            identity.AddClaim(nameIdentifierClaim);
+            var userMock = new Mock<IPrincipal>();
+            userMock.Setup(x => x.Identity).Returns(identity);
+            var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.Setup(cc => cc.HttpContext.User).Returns(userMock.Object);
+
             RegisterCompanyController controller = new RegisterCompanyController(dataMock.Object, new FileUploader(new TestPathProvider()),
-                new TestUserRoleManagerTrue());
+                new TestUserRoleManagerTrue())
+            {
+                ControllerContext = controllerContextMock.Object
+            };
             Company company = new Company()
             {
                 CompanyId = Guid.NewGuid(),
@@ -198,8 +236,20 @@ namespace PickAndBook.Tests.Controllers.RegisterCompanyControllerTests
                 postedFileMock.Setup(pf => pf.FileName).Returns("TestImage");
             }
 
+            string userId = Guid.NewGuid().ToString();
+            var identity = new GenericIdentity(userId, "");
+            var nameIdentifierClaim = new Claim(ClaimTypes.NameIdentifier, userId);
+            identity.AddClaim(nameIdentifierClaim);
+            var userMock = new Mock<IPrincipal>();
+            userMock.Setup(x => x.Identity).Returns(identity);
+            var controllerContextMock = new Mock<ControllerContext>();
+            controllerContextMock.Setup(cc => cc.HttpContext.User).Returns(userMock.Object);
+
             RegisterCompanyController controller = new RegisterCompanyController(dataMock.Object, new FileUploader(new TestPathProvider()),
-                new TestUserRoleManagerFalse());
+                new TestUserRoleManagerFalse())
+            {
+                ControllerContext = controllerContextMock.Object
+            };
 
             Company company = new Company()
             {

@@ -1,14 +1,7 @@
-﻿using Moq;
-using NUnit.Framework;
-using PickAndBook.Areas.Admin.Controllers;
+﻿using NUnit.Framework;
 using PickAndBook.Areas.Admin.Controllers.Base;
-using PickAndBook.Data;
 using PickAndBook.Tests.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PickAndBook.Tests.Controllers.AdminControllerTests
 {
