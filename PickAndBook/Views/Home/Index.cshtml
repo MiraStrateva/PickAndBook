@@ -3,7 +3,10 @@
 }
 
 @Html.Action("HomeCategories", "Home")
-@Html.Action("LastAddedCompanies", "Home")
+@*@Html.Action("LastAddedCompanies", "Home")*@
+@*// Use SingleR*@
+<div id="lastAddedCompanies">
+</div>
 
 <div class="row">
     <div class="col-md-6">
@@ -30,3 +33,10 @@
     <p class="lead">Please do not hesitate to contact our Live Help or send an e-mail to support@hour.for if you need any help at all.</p>
     <p>@Html.ActionLink("Contact us", "Contact", "Home")</p>
 </div>
+
+@*// Use SingleR*@
+@section Scripts {
+    @Scripts.Render("~/bundles/signalr")
+    @Scripts.Render("/signalr/hubs") 
+    @Scripts.Render("~/scripts/get.last.added.companies.js")
+}

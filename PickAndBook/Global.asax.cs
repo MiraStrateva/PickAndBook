@@ -13,6 +13,9 @@ namespace PickAndBook
 {
     public class MvcApplication : HttpApplication
     {
+        // Use SingleR
+        string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
         protected void Application_Start()
         {
             Database.SetInitializer<PickAndBookDbContext>(new MigrateDatabaseToLatestVersion<PickAndBookDbContext, DefaultMigrationConfiguration>());
@@ -21,17 +24,21 @@ namespace PickAndBook
             
             ViewEnginesConfig.RegisterViewEngines();
             AreaRegistration.RegisterAllAreas();
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //SqlDependency.Start(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-
+            // Start SqlDependency with application initialization
+            // Use SingleR
+            SqlDependency.Start(connectionString);
         }
 
         protected void Application_End()
         {
-            //SqlDependency.Stop(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // Stop SQL dependency
+            // Use SingleR
+            SqlDependency.Stop(connectionString);
         }
 
         public override string GetVaryByCustomString(HttpContext context, string arg)
@@ -48,7 +55,7 @@ namespace PickAndBook
                         {
                             while (reader.Read())
                             {
-                                categories.AppendLine(string.Format("{0};{1};{2};{3};{4}", reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.IsDBNull(3)==true?"null":reader.GetString(3), reader.GetInt32(4)));
+                                categories.AppendLine(string.Format("{0};{1};{2};{3};{4}", reader.GetGuid(0), reader.GetString(1), reader.GetString(2), reader.IsDBNull(3) == true ? "null" : reader.GetString(3), reader.GetInt32(4)));
                             }
                             return categories.ToString();
                         }

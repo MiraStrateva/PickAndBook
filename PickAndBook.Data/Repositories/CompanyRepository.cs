@@ -3,12 +3,14 @@ using PickAndBook.Data.Models;
 using PickAndBook.Data.Repositories.Base;
 using PickAndBook.Data.Repositories.Contracts;
 using System;
+using System.Data;
 using System.Linq;
 
 namespace PickAndBook.Data.Repositories
 {
     public class CompanyRepository : EFRepository<Company>, ICompanyRepository
     {
+
         public CompanyRepository(IPickAndBookDbContext context)
             : base(context)
         {

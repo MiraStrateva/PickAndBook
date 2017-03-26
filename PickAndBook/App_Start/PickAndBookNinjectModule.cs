@@ -6,6 +6,8 @@ using PickAndBook.Data.Repositories.Base;
 using PickAndBook.Data.Repositories.Contracts;
 using PickAndBook.Helpers;
 using PickAndBook.Helpers.Contracts;
+using PickAndBook.Services;
+using PickAndBook.Services.Contracts;
 
 namespace PickAndBook.App_Start
 {
@@ -26,6 +28,9 @@ namespace PickAndBook.App_Start
             this.Bind<IPathProvider>().To<PathProvider>().InSingletonScope();
             this.Bind<IFileUploader>().To<FileUploader>().InSingletonScope();
             this.Bind<IUserRoleManager>().To<UserRoleManager>().InSingletonScope();
+
+            // Use SingleR
+            this.Bind<ICompanyService>().To<CompanyService>();
         }
     }
 }

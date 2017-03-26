@@ -1,8 +1,7 @@
 ﻿using PickAndBook.Data;
 using PickAndBook.Data.Repositories.Contracts;
-using System;
+using PickAndBook.Services.Contracts;
 using System.Linq;
-using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 
@@ -13,13 +12,26 @@ namespace PickAndBook.Controllers
     {
         private readonly ICategoryRepository categoryRepository;
         private readonly ICompanyRepository companyRepository;
+        // Use SingleR
+        private readonly ICompanyService companyService;
 
         public HomeController(IPickAndBookData data)
-            :base(data)
+            : base(data)
         {
             this.categoryRepository = data.Categories;
             this.companyRepository = data.Companies;
         }
+
+        // Use SingleR
+        public HomeController(IPickAndBookData data, ICompanyService companyService)
+            : base(data)
+        {
+            this.categoryRepository = data.Categories;
+            this.companyRepository = data.Companies;
+            this.companyService = companyService;
+        }
+
+
 
         public ActionResult Index()
         {
@@ -51,8 +63,10 @@ namespace PickAndBook.Controllers
 
         public ActionResult LastAddedCompanies()
         {
-            var companies = this.companyRepository.GetLastAddedCompanies().ToList();
-            this.ViewBag.Current = DateTime.Now;
+            // Use SingleR
+            var companies = this.companyService.GetLastAddedCompanies().ToList();
+            // this.ViewBag.Current = DateTime.Now;
+            // var companies = this.companyRepository.GetLastAddedCompanies().ToList();
             return PartialView("_LastAddedCompanies", companies);
         }
 
