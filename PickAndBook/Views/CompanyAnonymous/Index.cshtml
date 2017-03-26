@@ -1,0 +1,28 @@
+﻿@model IList<PickAndBook.Data.Models.Company>
+@{
+    ViewBag.Title = "Company List";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div class="jumbotron admin">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <img class="img-thumbnail img-responsive" src=@Model[i].CompanyImage alt="" />
+            </div>
+            <div class="col-md-9">
+                <h2>@Model[i].CompanyName</h2>
+                <p>@Model[i].CompanyDescription</p>
+                <p><a href=@Model[i].CompanyWebsite target="_blank">@Model[i].CompanyWebsite</a></p>
+                @Html.ActionLink("View company", "Detail", "CompanyAnonymous", new { companyId = @Model[i].CompanyId }, new { Area = "" })
+            </div>
+        </div>
+    }
+    <br />
+    <p>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </p>
+</div>

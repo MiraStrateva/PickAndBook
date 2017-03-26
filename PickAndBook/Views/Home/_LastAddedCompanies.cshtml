@@ -1,0 +1,13 @@
+﻿@model IList<PickAndBook.Data.Models.Company>
+
+<div class="jumbotron row">
+    <p class="lead">Time: @ViewBag.Current</p>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="CompanyImage col-md-4" style="background:url(@Model[i].CompanyImage) center 100%">
+            <h2>@Model[i].CompanyName</h2>
+            <p class="lead">@Model[i].CompanyDescription</p>
+            @Html.ActionLink("View company", "Detail", "CompanyAnonymous", new { companyId = @Model[i].CompanyId }, new { Area = "" })
+        </div>
+    }
+</div>

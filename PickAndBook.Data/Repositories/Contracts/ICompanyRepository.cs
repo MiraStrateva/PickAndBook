@@ -13,6 +13,8 @@ namespace PickAndBook.Data.Repositories.Contracts
 
         IQueryable<Company> GetCompaniesByCategoryIdNameOrDescription(Guid? categoryId, string searchText);
 
+        IQueryable<Company> GetLastAddedCompanies();
+
         Company GetCompanyByUserId(string userId);
     }
 }

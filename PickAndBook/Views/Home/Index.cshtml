@@ -3,6 +3,7 @@
 }
 
 @Html.Action("HomeCategories", "Home")
+@Html.Action("LastAddedCompanies", "Home")
 
 <div class="row">
     <div class="col-md-6">
@@ -19,7 +20,7 @@
                 You can book an hour for any service provided by our partners with one click only.
                 Find your service, pick your hour and book!
             </p>
-            <p>@Html.ActionLink("Pick and Book", "Index", "FindCompany")</p>
+            <p>@Html.ActionLink("Pick and Book", "Index", "CompanyAnonymous")</p>
         </div>
     </div>
 </div>

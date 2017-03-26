@@ -135,10 +135,15 @@
     <Compile Include="Controllers\CategoriesControllerTests\Edit_Get_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Edit_Post_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\CompanyAnonymousControllerTests\ByCategory_Should.cs" />
+    <Compile Include="Controllers\CompanyAnonymousControllerTests\CompanyAnonymousController_Should.cs" />
+    <Compile Include="Controllers\CompanyAnonymousControllerTests\Detail_Should.cs" />
+    <Compile Include="Controllers\CompanyAnonymousControllerTests\Index_Should.cs" />
     <Compile Include="Controllers\CompanyControllerTests\CompanyController_Should.cs" />
     <Compile Include="Controllers\CompanyControllerTests\Edit_Get_Should.cs" />
     <Compile Include="Controllers\CompanyControllerTests\Edit_Post_Should.cs" />
     <Compile Include="Controllers\CompanyControllerTests\Index_Should.cs" />
+    <Compile Include="Controllers\HomeControllerTests\LastAddedCompanies_Should.cs" />
     <Compile Include="Controllers\RegisterCompanyControllerTests\Index_Get_Should.cs" />
     <Compile Include="Controllers\RegisterCompanyControllerTests\Index_Post_Should.cs" />
     <Compile Include="Controllers\RegisterCompanyControllerTests\RegisterCompanyController_Should.cs" />

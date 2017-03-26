@@ -246,6 +246,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CompanyAnonymousController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegisterCompanyController.cs" />
@@ -370,6 +371,9 @@
     <Content Include="Views\Shared\_CompanyDetail.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Home\_LastAddedCompanies.cshtml" />
+    <Content Include="Views\CompanyAnonymous\Detail.cshtml" />
+    <Content Include="Views\CompanyAnonymous\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

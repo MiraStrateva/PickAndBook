@@ -1,4 +1,5 @@
-﻿using PickAndBook.Data.Models;
+﻿using PickAndBook.Data.Common;
+using PickAndBook.Data.Models;
 using PickAndBook.Data.Repositories.Base;
 using PickAndBook.Data.Repositories.Contracts;
 using System;
@@ -39,6 +40,13 @@ namespace PickAndBook.Data.Repositories
         {
             return this.All()
                 .FirstOrDefault(c => c.UserId == userId);
+        }
+
+        public IQueryable<Company> GetLastAddedCompanies()
+        {
+            return this.All()
+                .OrderByDescending(c => c.CompanyId)
+                .Take(DataConstants.LastRegisteredCompaniesCount);
         }
     }
 }

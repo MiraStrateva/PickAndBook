@@ -7,7 +7,7 @@
         <div class="categoryImage col-md-4" style="background:url(@Model[i].CategoryImage) center 100%">
             <h2>@Model[i].CategoryName</h2>
             <p class="lead">@Model[i].CategoryDescription</p>
-            @Html.ActionLink("View companies", "CategoryCompanies", new { categoryId = @Model[i].CategoryId })
-        </div>
+            @Html.ActionLink("View companies", "ByCategory", "CompanyAnonymous", new { categoryId = @Model[i].CategoryId }, new { Area = "" })
+       </div>
     }
 </div>

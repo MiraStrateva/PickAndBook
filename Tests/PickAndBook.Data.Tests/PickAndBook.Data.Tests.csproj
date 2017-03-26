@@ -73,6 +73,7 @@
     <Compile Include="CategoryRepositoryTests\GetCategoryNameById_Should.cs" />
     <Compile Include="CompanyRepositoryTests\GetCompaniesByCategoryIdNameOrDescription_Should.cs" />
     <Compile Include="CompanyRepositoryTests\GetCompaniesByCategoryId_Should.cs" />
+    <Compile Include="CompanyRepositoryTests\GetLastAddedCompanies_Should.cs" />
     <Compile Include="EFRepositoryTests\All_Should.cs" />
     <Compile Include="EFRepositoryTests\GetById_Should.cs" />
     <Compile Include="Mocks\QueryableDbSetMock.cs" />
