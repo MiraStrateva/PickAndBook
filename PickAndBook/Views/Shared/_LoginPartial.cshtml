@@ -17,8 +17,21 @@
                 <div class="divider"></div>
             </li>
             <li>@Html.ActionLink("Manage Categories", "Index", "Categories", new { Area = "Admin" }, new { })</li>
-@*            <li>@Html.ActionLink("Manage Users", "Index", "Users", new { area = "Admin" })</li>*@
         }
+        @if (this.User.IsInRole(DataConstants.ClientRoleName))
+        {
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>@Html.ActionLink("Register Company", "Index", "RegisterCompany")</li>
+        }
+        @*@if (this.User.IsInRole(DataConstants.CompanyRoleName))
+        {
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>@Html.ActionLink("Edit Company", "Index", "Company")</li>
+        }*@
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

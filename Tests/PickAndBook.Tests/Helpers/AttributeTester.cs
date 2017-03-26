@@ -31,5 +31,13 @@ namespace PickAndBook.Tests.Helpers
             Assert.IsNotNull(attr);
             Assert.AreEqual(attr.Roles, DataConstants.AdministratorRoleName);
         }
+
+        public static void EnsureClassHasClientAuthorizationAttribute(Type classType)
+        {
+            var attr = Attribute.GetCustomAttribute(classType, typeof(AuthorizeAttribute)) as AuthorizeAttribute;
+
+            Assert.IsNotNull(attr);
+            Assert.AreEqual(attr.Roles, DataConstants.ClientRoleName);
+        }
     }
 }

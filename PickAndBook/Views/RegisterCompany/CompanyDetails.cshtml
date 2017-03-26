@@ -1,0 +1,14 @@
+﻿@model PickAndBook.Data.Models.Company
+@{
+    ViewBag.Title = "Company Details";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="jumbotron admin">
+    <h3>Category @Model.CompanyName </h3>
+    <hr />
+    @Html.Partial("_CompanyDetail", Model)
+    <p>
+        @Html.ActionLink("Back to Home", "Index", "Home")
+    </p>
+</div>

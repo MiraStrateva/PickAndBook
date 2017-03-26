@@ -1,0 +1,46 @@
+﻿@model PickAndBook.Data.Models.Company
+
+<dl class="dl-horizontal">
+    <dt>Image</dt>
+    <dd>
+        <div class="col-md-6">
+            <img class="img-thumbnail" src=@Model.CompanyImage alt="" />
+        </div>
+    </dd>
+    <dt>Category</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.Category.CategoryName)
+    </dd>
+    <dt>Company name</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.CompanyName)
+    </dd>
+    <dt>Company description</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.CompanyDescription)
+    </dd>
+    <dt>Email</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.Email)
+    </dd>
+    <dt>City</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.City)
+    </dd>
+    <dt>Address</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.Address)
+    </dd>
+    <dt>Contact Name</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.ContactName)
+    </dd>
+    <dt>Phone Number</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.PhoneNumber)
+    </dd>
+    <dt>Website</dt>
+    <dd>
+        @Html.DisplayFor(model => Model.CompanyWebsite)
+    </dd>
+</dl>

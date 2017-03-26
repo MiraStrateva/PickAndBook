@@ -1,17 +1,13 @@
 ﻿using Moq;
 using NUnit.Framework;
-using PickAndBook.Areas.Admin.Controllers;
-using PickAndBook.Common;
 using PickAndBook.Data;
+using PickAndBook.Helpers;
+using PickAndBook.Helpers.Contracts;
 using PickAndBook.Tests.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace PickAndBook.Tests.Controllers.CategoriesControllerTests
@@ -38,11 +34,11 @@ namespace PickAndBook.Tests.Controllers.CategoriesControllerTests
             postedFileMock.Setup(pf => pf.SaveAs(It.IsAny<String>()))
             .Throws(new Exception());
 
-            var dataMock = new Mock<IPickAndBookData>();
-            CategoriesController controller = new CategoriesController(dataMock.Object, new TestPathProvider());
+            IFileUploader fileUploader = new FileUploader(new TestPathProvider());
+            string path = "/Test";
 
             // Act
-            string uploadedImage = controller.UploadFile(postedFileMock.Object, Constants.CategoriesImageFolder);
+            string uploadedImage = fileUploader.UploadFile(postedFileMock.Object, path);
 
             // Assert
             Assert.IsEmpty(uploadedImage);
@@ -66,11 +62,12 @@ namespace PickAndBook.Tests.Controllers.CategoriesControllerTests
             }
 
             var dataMock = new Mock<IPickAndBookData>();
-            CategoriesController controller = new CategoriesController(dataMock.Object, new TestPathProvider());
-            string expectedImage = Path.Combine(Constants.CategoriesImageFolder, "TestImage");
+            IFileUploader fileUploader = new FileUploader(new TestPathProvider());
+            string path = "/Test";
+            string expectedImage = Path.Combine(path, "TestImage");
 
             // Act
-            string uploadedImage = controller.UploadFile(postedFileMock.Object, Constants.CategoriesImageFolder);
+            string uploadedImage = fileUploader.UploadFile(postedFileMock.Object, path);
 
             // Assert
             Assert.AreEqual(expectedImage, uploadedImage);

@@ -135,7 +135,12 @@
     <Compile Include="Controllers\CategoriesControllerTests\Edit_Get_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Edit_Post_Should.cs" />
     <Compile Include="Controllers\CategoriesControllerTests\Index_Should.cs" />
-    <Compile Include="Controllers\CategoriesControllerTests\UploadFile_Should.cs" />
+    <Compile Include="Controllers\RegisterCompanyControllerTests\Index_Get_Should.cs" />
+    <Compile Include="Controllers\RegisterCompanyControllerTests\Index_Post_Should.cs" />
+    <Compile Include="Controllers\RegisterCompanyControllerTests\RegisterCompanyController_Should.cs" />
+    <Compile Include="Helpers\TestUserRoleManagerFalse.cs" />
+    <Compile Include="Helpers\TestUserRoleManagerTrue.cs" />
+    <Compile Include="Other\FileUploaderTests\UploadFile_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\About_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\Error_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\HomeCategories_Should.cs" />

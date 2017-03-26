@@ -4,6 +4,7 @@ using PickAndBook.Areas.Admin.Controllers;
 using PickAndBook.Data;
 using PickAndBook.Data.Models;
 using PickAndBook.Data.Repositories.Contracts;
+using PickAndBook.Helpers;
 using PickAndBook.Tests.Helpers;
 using System;
 using System.Drawing;
@@ -97,7 +98,7 @@ namespace PickAndBook.Tests.Controllers.CategoriesControllerTests
                 postedFileMock.Setup(pf => pf.FileName).Returns("TestImage");
             }
 
-            CategoriesController controller = new CategoriesController(dataMock.Object, new TestPathProvider());
+            CategoriesController controller = new CategoriesController(dataMock.Object, new FileUploader(new TestPathProvider()));
             Category category = new Category()
             {
                 CategoryId = Guid.NewGuid(),
@@ -134,7 +135,7 @@ namespace PickAndBook.Tests.Controllers.CategoriesControllerTests
             postedFileMock.Setup(pf => pf.SaveAs(It.IsAny<String>()))
                         .Throws(new Exception());
 
-            CategoriesController controller = new CategoriesController(dataMock.Object, new TestPathProvider());
+            CategoriesController controller = new CategoriesController(dataMock.Object, new FileUploader(new TestPathProvider()));
             Category category = new Category()
             {
                 CategoryId = Guid.NewGuid(),

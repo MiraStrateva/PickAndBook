@@ -24,6 +24,8 @@ namespace PickAndBook.App_Start
 
             // Other
             this.Bind<IPathProvider>().To<PathProvider>().InSingletonScope();
+            this.Bind<IFileUploader>().To<FileUploader>().InSingletonScope();
+            this.Bind<IUserRoleManager>().To<UserRoleManager>().InSingletonScope();
         }
     }
 }

@@ -5,7 +5,6 @@ using PickAndBook.Data.Models;
 using PickAndBook.Helpers.Contracts;
 using PickAndBook.Models.Shared;
 using System;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,16 +13,16 @@ namespace PickAndBook.Areas.Admin.Controllers
 {
     public class CategoriesController : AdminController
     {
-        private IPathProvider pathProvider;
+        private IFileUploader fileUploader;
         public CategoriesController(IPickAndBookData data)
             : base(data)
         {
         }
 
-        public CategoriesController(IPickAndBookData data, IPathProvider pathProvider)
+        public CategoriesController(IPickAndBookData data, IFileUploader fileProvider)
             : base(data)
         {
-            this.pathProvider = pathProvider;
+            this.fileUploader = fileProvider;
         }
 
         [HttpGet]
@@ -69,7 +68,7 @@ namespace PickAndBook.Areas.Admin.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    string uploadedImage = UploadFile(upload, Constants.CategoriesImageFolder);
+                    string uploadedImage = this.fileUploader.UploadFile(upload, Constants.CategoriesImageFolder);
                     if (uploadedImage == "")
                     {
                         ModelState.AddModelError(Constants.FileCannotBeUploadedKey, Constants.FileCannotBeUploaded);
@@ -116,7 +115,7 @@ namespace PickAndBook.Areas.Admin.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    string uploadedImage = UploadFile(upload, Constants.CategoriesImageFolder);
+                    string uploadedImage = this.fileUploader.UploadFile(upload, Constants.CategoriesImageFolder);
                     if (uploadedImage == "")
                     {
                         ModelState.AddModelError(Constants.FileCannotBeUploadedKey, Constants.FileCannotBeUploaded);
@@ -131,24 +130,6 @@ namespace PickAndBook.Areas.Admin.Controllers
             }
 
             return View(category);
-        }
-
-        public string UploadFile(HttpPostedFileBase upload, string pathToUpload)
-        {
-            string uploadedImage;
-            try
-            {
-                string fileName = Path.GetFileName(upload.FileName);
-                string path = Path.Combine(this.pathProvider.MapPath("~" + pathToUpload), fileName);
-                upload.SaveAs(path);
-
-                uploadedImage = Path.Combine(pathToUpload, fileName);
-            }
-            catch
-            {
-                uploadedImage = "";
-            }
-            return uploadedImage;
         }
     }
 }

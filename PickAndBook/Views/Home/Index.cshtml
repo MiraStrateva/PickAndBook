@@ -9,7 +9,7 @@
         <div class="jumbotron" id="joinus">
             <h1>Join Us</h1>
             <p class="lead">If you own a company that offers hourly services and you want to be found by more people join us!</p>
-            <p><a href="/Views/RegisterCompany.aspx" class="btn btn-primary btn-lg">Register your company &raquo;</a></p>
+            <p>@Html.ActionLink("Register Company", "Index", "RegisterCompany")</p>
         </div>
     </div>
     <div class="col-md-6">
@@ -19,7 +19,7 @@
                 You can book an hour for any service provided by our partners with one click only.
                 Find your service, pick your hour and book!
             </p>
-            <p><a href="/Views/PickAndBook.aspx" class="btn btn-primary btn-lg">Pick & Book &raquo;</a></p>
+            <p>@Html.ActionLink("Pick and Book", "Index", "FindCompany")</p>
         </div>
     </div>
 </div>
@@ -27,5 +27,5 @@
 <div class="jumbotron" id="contactus">
     <h1>Here for you</h1>
     <p class="lead">Please do not hesitate to contact our Live Help or send an e-mail to support@hour.for if you need any help at all.</p>
-    <p><a href="/Views/Contact.aspx" class="btn btn-primary btn-lg">Contact us &raquo;</a></p>
+    <p>@Html.ActionLink("Contact us", "Contact", "Home")</p>
 </div>

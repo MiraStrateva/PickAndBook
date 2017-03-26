@@ -16,7 +16,7 @@ namespace PickAndBook.Tests.Controllers.AdminControllerTests
     public class AdminController_Should
     {
         [TestCase(typeof(UnauthorizedAccessException))]
-        public void HasAuthorizeAttribute_Always(Type attrType)
+        public void HasAdminAuthorizationAttribute_Always(Type attrType)
         {
             // Arrange & Act & Assert
             AttributeTester.EnsureClassHasAdminAuthorizationAttribute(typeof(AdminController));
