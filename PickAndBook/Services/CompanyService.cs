@@ -39,7 +39,7 @@ namespace PickAndBook.Services
 
                     var dependency = new SqlDependency(command);
                     dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
-
+                    
                     if (connection.State == ConnectionState.Closed)
                         connection.Open();
 
@@ -64,7 +64,7 @@ namespace PickAndBook.Services
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {
             if (e.Type == SqlNotificationType.Change)
-            {
+            { 
                 LastAddedCompaniesHub.UpdateLastAddedCompanies();
             }
         }

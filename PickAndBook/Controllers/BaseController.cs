@@ -1,7 +1,6 @@
 ﻿using Bytes2you.Validation;
 using PickAndBook.Data;
 using System;
-using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,18 +16,6 @@ namespace PickAndBook.Controllers
         }
 
         protected IPickAndBookData Data { get; set; }
-
-        protected internal RedirectToRouteResult RedirectToAction<TController>(Expression<Action<TController>> expression)
-                where TController : Controller
-        {
-            var method = expression.Body as MethodCallExpression;
-            if (method == null)
-            {
-                throw new ArgumentException("Expected method call");
-            }
-
-            return this.RedirectToAction(method.Method.Name);
-        }
 
         protected override void OnException(ExceptionContext filterContext)
         {
@@ -51,11 +38,8 @@ namespace PickAndBook.Controllers
             {
                 var controllerName = this.ControllerContext.RouteData.Values["Controller"].ToString();
                 var actionName = this.ControllerContext.RouteData.Values["Action"].ToString();
-                // this.View("Error", new HandleErrorInfo(filterContext.Exception, controllerName, actionName))
-                //    .ExecuteResult(this.ControllerContext);
 
                 Exception ex = filterContext.Exception;
-                // filterContext.ExceptionHandled = true;
 
                 var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
 

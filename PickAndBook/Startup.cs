@@ -3,10 +3,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using PickAndBook.Auth;
 using System;
 
-[assembly: OwinStartupAttribute(typeof(PickAndBook.Auth.Startup))]
-namespace PickAndBook.Auth
+[assembly: OwinStartupAttribute(typeof(PickAndBook.Startup))]
+namespace PickAndBook
 {
     public class Startup
     {
