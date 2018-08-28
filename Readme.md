@@ -4,7 +4,7 @@ The idea of the application is to allow users to book a visit in a Company. The 
 
 **What is done so far:**
 - Categories - add, edit, delete from Admin user
-- Register Company from Clien user
+- Register Company from Client user
 - Edit Company from Company user
 - See Categories, List of Companies, Company's detailed information by all users 
 
