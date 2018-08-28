@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using Ninject.Web.Common;
 using PickAndBook.Data;
 using PickAndBook.Data.Contracts;
 using PickAndBook.Data.Repositories;
@@ -15,8 +16,8 @@ namespace PickAndBook.App_Start
     {
         public override void Load()
         {
-            this.Bind<IPickAndBookDbContext>().To<PickAndBookDbContext>().InSingletonScope();
-            this.Bind<IPickAndBookData>().To<PickAndBookData>().InSingletonScope();
+            this.Bind<IPickAndBookDbContext>().To<PickAndBookDbContext>().InRequestScope();
+            this.Bind<IPickAndBookData>().To<PickAndBookData>().InRequestScope();
 
             // Repositories
             this.Bind(typeof(IEFRepository<>)).To(typeof(EFRepository<>));

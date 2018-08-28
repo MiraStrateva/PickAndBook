@@ -18,9 +18,9 @@ namespace PickAndBook
 
         protected void Application_Start()
         {
-            Database.SetInitializer<PickAndBookDbContext>(new MigrateDatabaseToLatestVersion<PickAndBookDbContext, DefaultMigrationConfiguration>());
-            var db = new PickAndBookDbContext();
-            db.Database.Initialize(true);
+            // Database.SetInitializer<PickAndBookDbContext>(new MigrateDatabaseToLatestVersion<PickAndBookDbContext, DefaultMigrationConfiguration>());
+            // var db = new PickAndBookDbContext();
+            // db.Database.Initialize(true);
             
             ViewEnginesConfig.RegisterViewEngines();
             AreaRegistration.RegisterAllAreas();

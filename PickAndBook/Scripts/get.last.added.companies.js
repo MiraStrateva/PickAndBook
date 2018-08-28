@@ -8,18 +8,13 @@
     };
 
     // Start the connection.
-    $.connection.hub.start().done(function () {
-        // alert("connection started")
-        getLastAddedCompanies();
-    }).fail(function (e) {
-        alert(e);
-    });
+    $.connection.hub.start();
+    getLastAddedCompanies();
 });
 
 
 function getLastAddedCompanies()
 {
-    //debugger;
     var tbl = $('#lastAddedCompanies');
     $.ajax({
         url: '/home/LastAddedCompanies',

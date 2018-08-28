@@ -1,4 +1,6 @@
-﻿using PickAndBook.Data;
+﻿using PickAndBook.Common;
+using PickAndBook.Data;
+using PickAndBook.Data.Common;
 using PickAndBook.Data.Repositories.Contracts;
 using PickAndBook.Services.Contracts;
 using System.Linq;
@@ -63,7 +65,10 @@ namespace PickAndBook.Controllers
 
         public ActionResult LastAddedCompanies()
         {
-            // Use SingleR
+            //// Use SingleR
+            //var companies = this.companyService.GetLastAddedCompanies()
+            //       .Take(DataConstants.LastRegisteredCompaniesCount)
+            //       .ToList();
             var companies = this.companyService.GetLastAddedCompanies().ToList();
             // this.ViewBag.Current = DateTime.Now;
             // var companies = this.companyRepository.GetLastAddedCompanies().ToList();

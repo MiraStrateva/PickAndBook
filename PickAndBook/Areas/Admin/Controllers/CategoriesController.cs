@@ -13,7 +13,7 @@ namespace PickAndBook.Areas.Admin.Controllers
 {
     public class CategoriesController : AdminController
     {
-        private IFileUploader fileUploader;
+        private readonly IFileUploader fileUploader;
         public CategoriesController(IPickAndBookData data)
             : base(data)
         {
